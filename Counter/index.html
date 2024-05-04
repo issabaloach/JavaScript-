@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900">
+    <h1 class=" font-serif ... text-center mt-6  text-2xl text-slate-400 hover:text-sky-400" >Counter</h1>
+    <h2 class=" font-serif ...  text-center mt-7  text-2xl text-slate-400 hover:text-sky-400" >Enter Date for Counter</h2>
+     <div class="mb-6 container px-5 py-24 mx-auto flex justify-center gap-4">
+        <p class="font-bold mb-1 text-1xl text-sky-400 text-slate-400">Enter Date</p>
+        <input  type="date" name="date" id="counterDate" class="w-[400px] rounded-full text-black bg-violet-200 text-xl border-2 border-purple-500 p-4 placeholder-purple-400">
+        <button onclick="submit()" class="justify-center w-[300] flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded-full text-lg mt-10 sm:mt-0">Submit</button>
+       </div>
+        
+       <div class="container gap-5 text-xl font-serif ... ">
+        
+        <div class="ml-5 text-slate-400 hover:text-sky-400 flex">
+            <h1>Seconds Left: &nbsp;</h1>
+            <span id="seconds" class="text-fuchsia-400 text-center"></span>
+        </div>
+        <div  class="ml-5 text-slate-400 hover:text-sky-400 flex">
+            <h1>Minutes Left: &nbsp;</h1>
+            <span id="minutes" class="text-fuchsia-400 text-center"></span>
+        </div>
+        <div  class="ml-5 text-slate-400 hover:text-sky-400 flex">
+            <h1>Hours Left: &nbsp;</h1>
+            <span id="hours" class="text-fuchsia-400 text-center"></span>
+        </div>
+        <div  class="ml-5 text-slate-400 hover:text-sky-400 flex">
+            <h1>Days Left: &nbsp;</h1>
+            <span id="days" class="text-fuchsia-400 text-center"></span>
+        </div>
+        <div  class="ml-5 text-slate-400 hover:text-sky-400 flex">
+            <h1>Months Left: &nbsp;</h1>
+            <span id="months" class="text-fuchsia-400 text-center"></span>
+        </div>
+        <div  class="ml-5 text-slate-400 hover:text-sky-400 flex">
+            <h1>Years Left: &nbsp;</h1>
+            <span id="years" class="text-fuchsia-400 text-center"></span>
+        </div>
+       </div>
+
+
+  <script src="script.js"></script>
+</body> 
+</html>
