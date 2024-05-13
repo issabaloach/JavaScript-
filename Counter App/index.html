@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black">
+    <div class="container mx-auto mt-5 text-center">
+        <h1 class="text-5xl font-bold mb-5" id="counter">0</h1>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="increment">Increment</button>
+        <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2" id="reset">Reset</button>
+    </div>
+    <div class="container mx-auto mt-5 text-center">
+        <p class="text-white text-2xl mt-3" id="message"></p>
+        <h4 class="text-white mt-5 text-2xl">History</h4>
+        <p class="text-white text-xl" id="history"></p>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
