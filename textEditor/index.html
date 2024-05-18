@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="gap-4 md ">
+    <h1 class="text-center mt-6 text-xl">Text Editor</h1>
+    <div class="text-center mt-6 ">
+        <button onclick="bold()"  class="fa-solid fa-bold"></button>
+        <button onclick="italic()"  class="fa-solid fa-italic"></button>
+        <button onclick="underline()" class="fa-solid fa-underline"></button>
+
+        <select class="border" id="font-size" onchange="changeFontSize(this.value)">
+            <option value="3">Font Size</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+        <select class="border" id="font-family" onchange="changeFontFamily(this.value)">
+            <option value="Ariel">Font Family</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Gill Sans">Gill Sans</option>
+            <option value="sans-sarif">sans-sarif</option>
+            <option value="serif">serif</option>
+        </select>
+        <input class="border" id="text-color" type="color" onchange="changeTextColor(this.value)">
+    </div>
+    <div class="editor text-center justify-items-center grid mt-6">
+        <textarea id="input" placeholder="enter text" class="w-[500px] h-[200px] mx-6 border grid justify-items-center place-content-center"></textarea>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
