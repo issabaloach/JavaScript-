@@ -176,12 +176,21 @@ const users = [
     },
   ];
 
+present_html = 0
+absent_html = 0
+leave_html = 0
+
 var userTable = document.getElementById("userTable");
 var userName = document.getElementById("userName");
 var fatherName = document.getElementById("fatherName");
 var rollno = document.getElementById("rollNo");
 var age = document.getElementById("age");
-
+var present_checkbox = document.getElementById("present")
+var absent_checkbox = document.getElementById("absent")
+var leave_checkbox = document.getElementById("leave")
+var present_html = document.getElementById("present-box")
+var absent_html = document.getElementById("absent-box")
+var leave_html = document.getElementById("leave-box")
 
   function addData() {
     userTable.innerHTML = "";
@@ -194,10 +203,75 @@ var age = document.getElementById("age");
               <td>${users[i].rollNo}</td>
               <td>${users[i].age}</td>
               <td onclick="likeUser(this)"><i class="fa-regular fa-heart"></i></td>
+  
+              <td><input type="radio" name="attendance_${i}" id="present_${i}" value="Present" onchange="updateAttendance(${i}, 'present')"> Present </td>
+              <td><input type="radio" name="attendance_${i}" id="absent_${i}" value="Absent" onchange="updateAttendance(${i}, 'absent')"> Absent</td>
+              <td><input type="radio" name="attendance_${i}" id="leave_${i}" value="Leave" onchange="updateAttendance(${i}, 'leave')"> Leave </td>
           </tr>
       `;
     }
   }
+  function updateAttendance(index, status) {
+    var user = users[index].name;
+    switch (status) {
+        case 'present':
+            if (!present_html.innerHTML.includes(`${user} - Present`)) {
+                present_html.innerHTML += `<div>${user} - Present</div>`;
+                updateCount('present-box', 1);
+                updateCount('absent-box', 0);
+                updateCount('leave-box', 0);
+            }
+            absent_html.innerHTML = absent_html.innerHTML.replace(`<div>${user} - Absent</div>`, '');
+            leave_html.innerHTML = leave_html.innerHTML.replace(`<div>${user} - Leave</div>`, '');
+            updateCount('present-box', 0)
+            updateCount('absent-box', -1)
+            updateCount('leave-box', -1)
+            break;
+        case 'absent':
+            if (!absent_html.innerHTML.includes(`${user} - Absent`)) {
+                absent_html.innerHTML += `<div>${user} - Absent</div>`;
+                updateCount('absent-box', 1);
+                updateCount('present-box', 0);
+                updateCount('leave-box', 0);
+            }
+            present_html.innerHTML = present_html.innerHTML.replace(`<div>${user} - Present</div>`, '');
+            leave_html.innerHTML = leave_html.innerHTML.replace(`<div>${user} - Leave</div>`, '');
+            updateCount('absent-box', 0);
+            updateCount('present-box', -1)
+            updateCount('leave-box', -1)
+            
+            break;
+        case 'leave':
+            if (!leave_html.innerHTML.includes(`${user} - Leave`)) {
+                leave_html.innerHTML += `<div>${user} - Leave</div>`;
+                updateCount('leave-box', 1);
+                updateCount('present-box', 0);
+                updateCount('absent-box', 0);
+            }
+            present_html.innerHTML = present_html.innerHTML.replace(`<div>${user} - Present</div>`, '');
+            absent_html.innerHTML = absent_html.innerHTML.replace(`<div>${user} - Absent</div>`, '');
+             updateCount('leave-box', 0);
+            updateCount('present-box', -1)
+            updateCount('absent-box', -1)
+            break;
+        default:
+            break;
+    }
+}
+
+function updateCount(boxId, increment) {
+  var box = document.getElementById(boxId);
+  var count = box.querySelector('span');
+  var currentCount = parseInt(count.textContent);
+  var newCount = currentCount + increment;
+  
+  if (newCount < 0) {
+      newCount = 0;
+  }
+  
+  count.textContent = newCount;
+}
+
   addData();
   
   function addUser() {
@@ -221,3 +295,4 @@ var age = document.getElementById("age");
       element.innerHTML = '<i class="fa-regular fa-heart"></i>';
     }
   }
+
