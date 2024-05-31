@@ -111,7 +111,7 @@ var arts = [
     };
 
     function edit(element) {
-        var index = parseInt(element.parentNode.parentNode.id);
+        var index = parseInt(element.parentNode.parentNode.ind);
         var newName = prompt("Enter the new name:");
         var newDescription = prompt("Enter the new description:");
         arts[index].name = newName;
