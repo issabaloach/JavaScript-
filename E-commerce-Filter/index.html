@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce-Filter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="cursor-pointer bg-orange-50">
+    <style>
+         .header {
+          display: flex;
+          justify-content: space-between;
+         }
+         aside h2 {
+            text-decoration: underline;
+         }
+    </style> 
+
+     <!-- header -->
+    <div class="text-xl mt-4 gap-5 flex m-3 header border-b-2 border-blue-500 pb-2">
+        <h1 class="text-2xl text-green-600">E-Commerce Products</h1>
+        <button onclick="cart()" class="fa-solid fa-cart-shopping"></button>
+    </div>
+
+   <!-- filters according to -->
+    <div class="flex md" >
+        <aside class="ml-4 mt-8 border-r-2 border-blue-500 pr-4"> 
+            <h2 class="text-xl text-green-600">Filter</h2>
+             
+            <div class="p-2">
+                <h2 class="text-lg mt-7 font-bold">Price</h2>
+                <input type="radio" name="price" id="price-100">
+                <label for="price-100">> 100</label>
+                <br>
+                <input type="radio" name="price" id="price-200">
+                <label for="price-200">> 200</label>
+                <br>
+                <input type="radio" name="price" id="price-300 ">
+                <label for="price-300">> 300</label>
+                <br>
+                <input type="radio" name="price" id="price-400">
+                <label for="price-400">> 400</label>
+            </div>
+        
+            <div class="p-2">
+                <h2 class="text-lg mt-7 font-bold">Sort By</h2>
+                <input type="radio" name="sort" id="sort-hl">
+                <label for="sort-hl">H-L</label>
+                <br>
+                <input type="radio" name="sort" id="sort-lh">
+                <label for="sort-lh">L-H</label>
+            </div>
+        
+            <div class="p-2">
+                <h2 class="text-lg mt-7 font-bold">Category</h2>
+                <input type="radio" name="category" id="category-men">
+                <label for="category-men">Men's Clothing</label>
+                <br>
+                <input type="radio" name="category" id="category-jewelery">
+                <label for="category-jewelery">Jewelery</label>
+                <br>
+                <input type="radio" name="category" id="category-electronics">
+                <label for="category-electronics">Electronics</label>
+                <br>
+                <input type="radio" name="category" id="category-women">
+                <label for="category-women">Women's Clothing</label>
+            </div>
+        
+            <button class="p-1 mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                Clear filters
+            </button>
+        </aside>
+
+        <!-- Main Products-->
+        <div class="p-4 md">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Add New Product</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="flex flex-col">
+                        <label for="title" class="mb-2">Title:</label>
+                        <input type="text" name="title" id="title" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="image" class="mb-2">Image:</label>
+                        <input type="url" name="image" id="image" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="price" class="mb-2">Price:</label>
+                        <input type="number" name="price" id="price" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="category" class="mb-2">Category:</label>
+                        <input type="text" name="category" id="category" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+                    </div>
+                    <div class="flex flex-col col-span-1 md:col-span-2 lg:col-span-3">
+                        <label for="description" class="mb-2">Description:</label>
+                        <input type="text" name="description" id="description" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+                    </div>
+                </div>
+                <button onclick="submit()" class="mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                    Submit
+                </button>
+            </div>
+                   <!-- lists of products -->
+            <section class="text-gray-600   ">
+                <div class="container">
+                    <div id="list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+   
+
+    <script src="script.js"></script>
+</body>
+</html>
