@@ -1,5 +1,7 @@
 var lists = document.getElementById("list")
-
+const priceRadios = document.getElementsByName('price');
+const sortRadios = document.getElementsByName('sort');
+const categoryRadios = document.getElementsByName('category');
 
 var products = [
     {
@@ -113,7 +115,7 @@ var products = [
       {
         "id": 10,
         "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-        "price": 109,
+        "price": 420,
         "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
         "category": "electronics",
         "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
@@ -125,7 +127,7 @@ var products = [
       {
         "id": 11,
         "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
-        "price": 109,
+        "price": 510,
         "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
         "category": "electronics",
         "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
@@ -173,7 +175,7 @@ var products = [
       {
         "id": 15,
         "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-        "price": 56.99,
+        "price": 112.99,
         "description": "Note: The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm. Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside. Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water, for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
         "category": "women's clothing",
         "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
@@ -256,31 +258,107 @@ var products = [
       }                
 ]
 
-products.forEach(function (data, ind) {
-    var elee = `
+function displayProducts(productsToDisplay) {
+  lists.innerHTML = '';
+  productsToDisplay.forEach(product => {
+      var productElement = `
+          <div class="border rounded-lg p-4">
+              <img src="${product.image}" alt="${product.title}" class="w-full h-48 object-cover mb-4">
+              <h3 class="text-lg font-bold">${product.title}</h3>
+              <p class="text-gray-500">${product.category}</p>
+              <p class="text-gray-900">$${product.price}</p>
+              <p class="text-gray-700">${product.description}</p>
+                  <button onclick="addToCart()" class="mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                        Add To Cart
+                    </button>
+          </div>
+      `;
+      lists.innerHTML += productElement;
+  });
+}
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-    <a href="#">
-        <img class="rounded-t-lg w-full h-[500px] w-[200px] object-cover object-center" src="${data.image}" alt="${data.title}" />
-    </a>
-    <div class="p-5">
-        <p class="mb-3 text-lg font-bold text-gray-900">$${data.price}</p>
-        <a href="#">
-            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">${data.title}</h5>
-        </a>
-        <p class="mb-3 text-sm font-normal text-gray-700">${data.category}</p>
-        <p class="mb-3 text-sm font-normal text-gray-700">${data.description}</p>
-        <p class="mb-3 text-sm font-normal text-gray-700">Rating: ${data.rating.rate} (${data.rating.count} reviews)</p>
-        <button onclick="addToCart()" class="mt-4 cursor-pointer transition-all bg-blue-500 text-white px-4 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
-            Add to Cart
-        </button>
-    </div>
-</div>
+function filterProducts() {
+  let filteredProducts = products;
 
-`;
+  priceRadios.forEach(radio => {
+      if (radio.checked) {
+          const priceValue = parseInt(radio.id.split('-')[1]);
+          filteredProducts = filteredProducts.filter(product => product.price > priceValue);
+      }
+  });
 
-    lists.innerHTML += elee;
+  categoryRadios.forEach(radio => {
+      if (radio.checked) {
+          const categoryValue = radio.id.split('-')[1];
+          filteredProducts = filteredProducts.filter(product => product.category.toLowerCase().includes(categoryValue));
+      }
+  });
+
+  sortRadios.forEach(radio => {
+      if (radio.checked) {
+          const sortValue = radio.id.split('-')[1];
+          if (sortValue === 'hl') {
+              filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
+          } else if (sortValue === 'lh') {
+              filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
+          }
+      }
+  });
+
+  displayProducts(filteredProducts);
+}
+
+function clearFilters() {
+  priceRadios.forEach(radio => radio.checked = false);
+  sortRadios.forEach(radio => radio.checked = false);
+  categoryRadios.forEach(radio => radio.checked = false);
+
+  displayProducts(products);
+}
+
+function submitProduct() {
+  const title = document.getElementById('title').value;
+  const image = document.getElementById('image').value;
+  const price = parseFloat(document.getElementById('price').value);
+  const category = document.getElementById('category').value;
+  const description = document.getElementById('description').value;
+
+  if (title && image && price && category && description) {
+      const newProduct = {
+          id: products.length + 1,
+          title: title,
+          price: price,
+          description: description?.slice(0, 100),
+          category: category,
+          image: image,
+          rating: { rate: 0, count: 0 }
+      };
+      products.push(newProduct);
+      displayProducts(products);
+  } else {
+      alert("Please fill in all fields.");
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  displayProducts(products);
+
+  priceRadios.forEach(radio => {
+      radio.addEventListener('change', filterProducts);
+  });
+
+  sortRadios.forEach(radio => {
+      radio.addEventListener('change', filterProducts);
+  });
+
+  categoryRadios.forEach(radio => {
+      radio.addEventListener('change', filterProducts);
+  });
 });
+
+
+
+
 
 
 

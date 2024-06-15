@@ -18,14 +18,14 @@
          }
     </style> 
 
-     <!-- header -->
+    <!-- header -->
     <div class="text-xl mt-4 gap-5 flex m-3 header border-b-2 border-blue-500 pb-2">
         <h1 class="text-2xl text-green-600">E-Commerce Products</h1>
         <button onclick="cart()" class="fa-solid fa-cart-shopping"></button>
     </div>
 
    <!-- filters according to -->
-    <div class="flex md" >
+    <div class="flex">
         <aside class="ml-4 mt-8 border-r-2 border-blue-500 pr-4"> 
             <h2 class="text-xl text-green-600">Filter</h2>
              
@@ -37,7 +37,7 @@
                 <input type="radio" name="price" id="price-200">
                 <label for="price-200">> 200</label>
                 <br>
-                <input type="radio" name="price" id="price-300 ">
+                <input type="radio" name="price" id="price-300">
                 <label for="price-300">> 300</label>
                 <br>
                 <input type="radio" name="price" id="price-400">
@@ -68,13 +68,13 @@
                 <label for="category-women">Women's Clothing</label>
             </div>
         
-            <button class="p-1 mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+            <button onclick="clearFilters()" class="p-1 mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
                 Clear filters
             </button>
         </aside>
 
         <!-- Main Products-->
-        <div class="p-4 md">
+        <div class="p-4 w-full">
             <div class="mb-8">
                 <h2 class="text-xl font-bold mb-4">Add New Product</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -83,8 +83,8 @@
                         <input type="text" name="title" id="title" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
                     </div>
                     <div class="flex flex-col">
-                        <label for="image" class="mb-2">Image:</label>
-                        <input type="url" name="image" id="image" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
+                        <label for="file" class="mb-2">Image:</label>
+                        <input type="file" name="image" id="image" class="bg-white border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
                     </div>
                     <div class="flex flex-col">
                         <label for="price" class="mb-2">Price:</label>
@@ -99,20 +99,19 @@
                         <input type="text" name="description" id="description" class="border rounded p-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" required>
                     </div>
                 </div>
-                <button onclick="submit()" class="mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                <button onclick="submitProduct()" class="mt-6 cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
                     Submit
                 </button>
             </div>
-                   <!-- lists of products -->
-            <section class="text-gray-600   ">
+            <!-- lists of products -->
+            <section class="text-gray-600">
                 <div class="container">
                     <div id="list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                
                 </div>
             </section>
         </div>
     </div>
-
-   
 
     <script src="script.js"></script>
 </body>
